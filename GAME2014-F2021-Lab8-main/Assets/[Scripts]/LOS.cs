@@ -16,7 +16,8 @@ public class LOS : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LOSCollider = GetComponent<PolygonCollider2D>();
+        LOSCollider = GetComponent<PolygonCollider2D>(); 
+        // worked, but what if we have our enemy controller, order of detection
     }
 
     // Update is called once per frame

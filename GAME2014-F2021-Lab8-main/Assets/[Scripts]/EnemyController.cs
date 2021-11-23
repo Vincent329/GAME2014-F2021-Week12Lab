@@ -51,6 +51,8 @@ public class EnemyController : MonoBehaviour
     {
         if (enemyLOS.colliderList.Count > 0)
         {
+            // worked, but what if we have our enemy controller, order of detection
+
             // Case 1 enemy polygonCollider2D collides with player and player is at the top of the list
             if ((enemyLOS.collidesWith.gameObject.CompareTag("Player")) &&
                 (enemyLOS.colliderList[0].gameObject.CompareTag("Player")))
@@ -58,12 +60,14 @@ public class EnemyController : MonoBehaviour
                 return true;
             }
             // Case 2 player is in the Collider List and we can draw ray to the player
+
             else
             {
                 foreach (var collider in enemyLOS.colliderList)
                 {
                     if (collider.gameObject.CompareTag("Player"))
                     {
+                        // addition: see a player with the ray but what if the player isn't in the top of the list
                         var hit = Physics2D.Raycast(lookInFrontPoint.position, Vector3.Normalize(collider.transform.position - lookInFrontPoint.position), 5.0f, enemyLOS.contactFilter.layerMask);
                         
                         if((hit) && (hit.collider.gameObject.CompareTag("Player")))
